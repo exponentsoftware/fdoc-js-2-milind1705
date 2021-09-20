@@ -27,7 +27,7 @@ const users = [
 {
     name:'John', 
     scores:85,
-    skills:['HTM'],
+    skills:['HTML'],
     age:25
 },
 {
@@ -49,3 +49,71 @@ const users = [
     age:20
 }
 ];
+//solution
+function filterByscore(arr, score){
+
+   var abc = arr.filter(elm => elm.scores >  score)
+   return abc;
+}
+//console.log(filterByscore(users, 70))
+
+//add user to array if user is not present
+
+function addAnUser(arr, object){
+    var existUser = arr.find(elm => elm.name.toLowerCase() == object.name.toLowerCase())
+    if(existUser){
+        return "User is alredy present"
+    } else 
+    arr.push(object);
+    return arr;
+
+}
+
+let newObject = {
+    name:'thomas',
+    scores:80,
+    skills:['HTM', 'CSS', 'JS'],
+    age:20
+
+};
+
+let newObject1 = {
+    name:'Sandy',
+    scores:80,
+    skills:['HTM', 'CSS', 'JS'],
+    age:20
+
+}
+
+
+console.log(addAnUser(users, newObject))
+
+//solution add skil to the array of user
+function addSkill(arr, user, skill){
+    var userIndex = arr.findIndex(elm => elm.name.toLowerCase() == user.toLowerCase());
+
+    if(userIndex == -1){
+        return "user does not exists"
+    } else {
+        var skills =  arr[userIndex].skills
+        skills.push(skill)
+    }
+    return arr[userIndex];
+};
+
+// console.log(addSkill(users, "John", "Javascript"))
+
+//update the user details
+function update(arr, user, updateScore){
+    var userIndex = arr.findIndex(elm => elm.name.toLowerCase() == user.toLowerCase())
+    if(userIndex == -1){
+        return "user does not exists"
+    } else {
+
+     arr[userIndex].scores = updateScore
+
+     return arr[userIndex]
+    }
+}
+
+console.log(update(users, "john", 87))
